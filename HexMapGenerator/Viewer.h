@@ -77,6 +77,11 @@ namespace HexMapGenerator {
 		void CopyVertexFromPolygon(unsigned int dst_polygon_index, unsigned int src_polygon_index, unsigned char src_vertex_index) {
 			polygons[dst_polygon_index].vertexes[polygons[dst_polygon_index].next_vertex_num] = polygons[src_polygon_index].vertexes[src_vertex_index];
 			polygons[dst_polygon_index].next_vertex_num++;
+
+			//vertexes[vertex_index].polygons[vertexes[vertex_index].next_polygon_num] = &(polygons[polygon_index]);
+			//vertexes[vertex_index].next_polygon_num++;
+			polygons[src_polygon_index].vertexes[src_vertex_index]->polygons[polygons[src_polygon_index].vertexes[src_vertex_index]->next_polygon_num] = &(polygons[dst_polygon_index]);
+			polygons[src_polygon_index].vertexes[src_vertex_index]->next_polygon_num++;
 		}
 
 	private:
